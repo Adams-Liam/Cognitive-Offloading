@@ -19,6 +19,14 @@
         font-size: 24px;
         font-weight: bold;
       }
+      #back-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
       #start-btn {
         padding: 20px 60px;
         font-size: 28px;
@@ -35,6 +43,7 @@
   </head>
   <body>
     <div id="counter">Reveals: 0</div>
+    <button id="back-btn" onclick="location.href='index.html'">← Back</button>
     <button id="start-btn" onclick="startTest()">Start Test</button>
     <div id="grid">
       <div class="square" style="background:crimson;"></div>
@@ -66,8 +75,6 @@
       function startTest() {
         document.getElementById('start-btn').style.display = 'none';
         started = true;
-        count++;
-        document.getElementById('counter').innerText = 'Reveals: ' + count;
         document.getElementById('grid').style.display = 'grid';
         clearTimeout(timer);
         timer = setTimeout(hideGrid, 10000);
