@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test 2</title>
+    <style>
+      body {
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+      }
+      #counter {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      #start-btn {
+        padding: 20px 60px;
+        font-size: 28px;
+        cursor: pointer;
+      }
+      #grid {
+        display: none;
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: repeat(2, 100px);
+        gap: 20px;
+      }
+      .square { width: 100px; height: 100px; }
+    </style>
+  </head>
+  <body>
+    <div id="counter">Reveals: 0</div>
+    <button id="start-btn" onclick="startTest()">Start Test</button>
+    <div id="grid">
+      <div class="square" style="background:crimson;"></div>
+      <div class="square" style="background:coral;"></div>
+      <div class="square" style="background:gold;"></div>
+      <div class="square" style="background:lime;"></div>
+      <div class="square" style="background:cyan;"></div>
+      <div class="square" style="background:indigo;"></div>
+      <div class="square" style="background:hotpink;"></div>
+      <div class="square" style="background:chocolate;"></div>
+    </div>
+    <script>
+      var count = 0;
+      var started = false;
+      var timer;
+
+      function showGrid() {
+        count++;
+        document.getElementById('counter').innerText = 'Reveals: ' + count;
+        document.getElementById('grid').style.display = 'grid';
+        clearTimeout(timer);
+        timer = setTimeout(hideGrid, 3000);
+      }
+
+      function hideGrid() {
+        document.getElementById('grid').style.display = 'none';
+      }
+
+      function startTest() {
+        document.getElementById('start-btn').style.display = 'none';
+        started = true;
+        count++;
+        document.getElementById('counter').innerText = 'Reveals: ' + count;
+        document.getElementById('grid').style.display = 'grid';
+        clearTimeout(timer);
+        timer = setTimeout(hideGrid, 10000);
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.code === 'Space' && started) {
+          e.preventDefault();
+          if (document.getElementById('grid').style.display === 'none') {
+            showGrid();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
